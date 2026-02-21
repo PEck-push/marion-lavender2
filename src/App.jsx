@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 
 const C = {
-  cream:"#F4F1EA", stone:"#DDD8D0", clay:"#7A6E8A", clayDeep:"#5C526A",
-  moss:"#4E5845", mossMid:"#6A7264", dust:"#B0A8B8", midnight:"#1C1E18",
-  white:"#FAF9F6", ink:"#252820"
+  cream:"#FAF5EE", stone:"#EEDDD0", clay:"#9A88A8", clayDeep:"#5A4858",
+  moss:"#5A4858", mossMid:"#DDB8A8", dust:"#C8A8C0", midnight:"#2A1E28",
+  white:"#FDFAF6", ink:"#2C2028"
 };
 
 const CSS = `
@@ -14,7 +14,7 @@ html, body {
   max-width: 100vw;
   overflow-x: hidden;
 }
-body{background:#FAF9F6;color:#252820;font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7}
+body{background:#FDFAF6;color:#2C2028;font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7}
 button{font-family:'DM Sans',sans-serif;cursor:pointer}
 p{font-size:.92rem;line-height:1.85;margin:0}
 
@@ -128,17 +128,17 @@ function ImageSlot({ label, desc, aspect = "4/3", fill = false }) {
       {img ? (
         <>
           <img src={img} alt={label} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transition: "transform .6s", transform: hov ? "scale(1.04)" : "scale(1)" }} />
-          {hov && <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: ".6rem 1rem", background: "rgba(28,30,24,.7)", backdropFilter: "blur(6px)" }}>
+          {hov && <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: ".6rem 1rem", background: "rgba(42,30,40,.7)", backdropFilter: "blur(6px)" }}>
             <span style={{ fontSize: ".55rem", letterSpacing: ".2em", color: C.dust, textTransform: "uppercase" }}>Bild austauschen</span>
           </div>}
         </>
       ) : (
-        <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "1.4rem", background: hov ? "rgba(122,110,138,.09)" : "transparent", transition: "background .3s" }}>
+        <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "1.4rem", background: hov ? "rgba(154,136,168,.09)" : "transparent", transition: "background .3s" }}>
           <div style={{ width: 40, height: 40, borderRadius: "50%", border: `1.5px solid ${hov ? C.clay : C.dust}`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: ".8rem", transition: "border-color .3s" }}>
             <span style={{ fontSize: "1.1rem", color: hov ? C.clay : C.dust, lineHeight: 1 }}>＋</span>
           </div>
           <div style={{ fontSize: ".62rem", letterSpacing: ".2em", textTransform: "uppercase", color: hov ? C.clay : C.mossMid, marginBottom: ".5rem", textAlign: "center", fontFamily: "'DM Sans',sans-serif" }}>{label}</div>
-          <div style={{ fontSize: ".68rem", color: "#7A758A", lineHeight: 1.55, textAlign: "center", maxWidth: 200, fontFamily: "'DM Sans',sans-serif" }}>{desc}</div>
+          <div style={{ fontSize: ".68rem", color: "#5A4858", lineHeight: 1.55, textAlign: "center", maxWidth: 200, fontFamily: "'DM Sans',sans-serif" }}>{desc}</div>
           <div style={{ marginTop: ".8rem", fontSize: ".57rem", letterSpacing: ".15em", color: C.dust, textTransform: "uppercase", fontFamily: "'DM Mono',monospace" }}>Bild hochladen</div>
         </div>
       )}
@@ -163,13 +163,13 @@ function Tag({ children }) {
   return <span style={{ display: "inline-block", alignSelf: "flex-start", width: "max-content", maxWidth: "100%", fontSize: ".6rem", letterSpacing: ".2em", textTransform: "uppercase", background: C.clay, color: C.white, padding: ".28rem .7rem", borderRadius: "2px", marginBottom: "1.4rem" }}>{children}</span>;
 }
 function Note({ children }) {
-  return <div style={{ background: "rgba(122,110,138,.08)", borderLeft: `3px solid ${C.clay}`, padding: "1.3rem 1.8rem", margin: "1.8rem 0", fontSize: ".82rem", lineHeight: 1.7, color: "#35304A" }}>{children}</div>;
+  return <div style={{ background: "rgba(154,136,168,.08)", borderLeft: `3px solid ${C.clay}`, padding: "1.3rem 1.8rem", margin: "1.8rem 0", fontSize: ".82rem", lineHeight: 1.7, color: "#5A4858" }}>{children}</div>;
 }
 function Btn({ children, onClick, variant = "solid", light = false }) {
   const [hov, setHov] = useState(false);
   const v = {
     solid: { background: hov ? C.clayDeep : C.clay, color: C.white, border: "none" },
-    outline: { background: hov ? (light ? "rgba(255,255,255,.08)" : "rgba(122,110,138,.07)") : "transparent", color: light ? C.cream : C.clay, border: `1.5px solid ${light ? C.dust : C.clay}` },
+    outline: { background: hov ? (light ? "rgba(255,255,255,.08)" : "rgba(154,136,168,.07)") : "transparent", color: light ? C.cream : C.clay, border: `1.5px solid ${light ? C.dust : C.clay}` },
   };
   return (
     <button style={{ ...v[variant], padding: ".82rem 2rem", fontSize: ".67rem", letterSpacing: ".22em", textTransform: "uppercase", fontFamily: "'DM Sans',sans-serif", transition: "all .22s", whiteSpace: "nowrap" }}
@@ -185,7 +185,7 @@ function Faq({ q, a }) {
         <span style={{ color: C.clay, fontSize: "1rem", flexShrink: 0, transition: "transform .3s", transform: open ? "rotate(45deg)" : "none" }}>{open ? "×" : "+"}</span>
       </div>
       <div style={{ maxHeight: open ? "500px" : "0", overflow: "hidden", transition: "max-height .5s ease" }}>
-        <p style={{ paddingBottom: "1.3rem", fontSize: ".87rem", color: "#4E5845", lineHeight: 1.85, paddingRight: "1.5rem" }}>{a}</p>
+        <p style={{ paddingBottom: "1.3rem", fontSize: ".87rem", color: "#5A4858", lineHeight: 1.85, paddingRight: "1.5rem" }}>{a}</p>
       </div>
     </div>
   );
@@ -214,7 +214,7 @@ function BreathingCircle({ size = 400 }) {
         position: "absolute",
         inset: "20%",
         borderRadius: "50%",
-        background: `radial-gradient(ellipse at 50% 50%, rgba(122,110,138,.05) 0%, rgba(176,168,184,.02) 40%, transparent 65%)`,
+        background: `radial-gradient(ellipse at 50% 50%, rgba(221,184,168,.08) 0%, rgba(200,168,192,.04) 40%, transparent 65%)`,
         animation: `breathe 8s ease-in-out infinite 0.7s`
       }} />
       {rings.map((r, i) => (
@@ -248,7 +248,7 @@ function SvcCard({ icon, title, desc, onClick }) {
       }}>
       <div style={{ fontSize: "1.2rem", marginBottom: ".9rem", color: hov ? C.clay : C.mossMid, transition: "color .3s" }}>{icon}</div>
       <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.4rem", fontWeight: 400, color: C.moss, marginBottom: ".6rem" }}>{title}</h3>
-      <p style={{ fontSize: ".81rem", lineHeight: 1.75, color: "#4E5845", margin: 0, flexGrow: 1 }}>{desc}</p>
+      <p style={{ fontSize: ".81rem", lineHeight: 1.75, color: "#5A4858", margin: 0, flexGrow: 1 }}>{desc}</p>
       <div style={{ marginTop: "1.3rem", fontSize: ".58rem", letterSpacing: ".22em", textTransform: "uppercase", color: hov ? C.clay : C.dust, transition: "color .3s" }}>Mehr erfahren →</div>
     </div>
   );
@@ -269,7 +269,7 @@ function OilCard({ name, lat, anw, kind }) {
       }}>
       <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.7rem", color: C.moss, marginBottom: ".3rem" }}>{name}</div>
       <div style={{ fontFamily: "'DM Mono',monospace", fontSize: ".65rem", color: C.clay, marginBottom: "1.2rem", fontStyle: "italic" }}>{lat}</div>
-      <p style={{ fontSize: ".85rem", color: "#4E5845", margin: "0 0 1.2rem", lineHeight: 1.6, flexGrow: 1 }}>{anw}</p>
+      <p style={{ fontSize: ".85rem", color: "#5A4858", margin: "0 0 1.2rem", lineHeight: 1.6, flexGrow: 1 }}>{anw}</p>
       <div style={{ fontSize: ".65rem", color: kind.includes("⚠") ? C.clayDeep : C.mossMid }}>{kind}</div>
     </div>
   );
@@ -292,12 +292,12 @@ function HomePage({ nav }) {
     <>
       {/* HERO */}
       <section style={{ background: C.moss, position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse 70% 60% at 65% 45%, rgba(122,110,138,.2) 0%, transparent 65%)`, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse 70% 60% at 65% 45%, rgba(221,184,168,.25) 0%, transparent 65%)`, pointerEvents: "none" }} />
         <div className="wk-hero-grid" style={{ maxWidth: "1380px", margin: "0 auto", position: "relative", zIndex: 2 }}>
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "clamp(4rem,8vw,7rem) clamp(1.4rem,5vw,5rem) clamp(3.5rem,6vw,5.5rem)" }}>
             <div style={{ fontSize: ".62rem", letterSpacing: ".35em", textTransform: "uppercase", color: C.dust, marginBottom: "2rem", display: "flex", alignItems: "center", gap: ".8rem" }}>
               <span style={{ display: "inline-block", width: "1.5rem", height: "1px", background: C.dust, opacity: .6 }} />
-              Ganzheitliche Praxis · Mattersburg
+              Ganzheitliche Cranio Praxis · Mattersburg
             </div>
             <h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 300, lineHeight: 1.0, color: C.cream, marginBottom: "2rem", fontSize: "clamp(2.5rem,5.5vw,6.8rem)" }}>
               Dein Kind darf sich<br />
@@ -315,7 +315,7 @@ function HomePage({ nav }) {
 
           {/* RIGHT – breathing circles */}
           <div className="wk-hero-right" style={{ display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden" }}>
-            <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse 80% 60% at 60% 40%, rgba(176,168,184,.15) 0%, transparent 65%)`, pointerEvents: "none" }} />
+            <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse 80% 60% at 60% 40%, rgba(200,168,192,.2) 0%, transparent 65%)`, pointerEvents: "none" }} />
             <BreathingCircle size={400} />
             <div style={{ position: "absolute", bottom: "2.5rem", right: "2.5rem", fontFamily: "'DM Mono',monospace", fontSize: ".57rem", color: C.mossMid, letterSpacing: ".1em", textAlign: "right", lineHeight: 2.2 }}>
               CST · TCM · Tuina · G-Well · Aroma<br />
@@ -331,10 +331,10 @@ function HomePage({ nav }) {
           <Reveal>
             <Label n="01" text="Philosophie" />
             <H2 size="clamp(2.2rem,3.8vw,4rem)">"Der erste Atem zählt."</H2>
-            <p style={{ fontSize: ".93rem", lineHeight: 1.95, color: "#4E5845", marginBottom: "1.2rem" }}>
+            <p style={{ fontSize: ".93rem", lineHeight: 1.95, color: "#5A4858", marginBottom: "1.2rem" }}>
               Jedes Kind kommt mit einer Geschichte auf die Welt — dem Weg durch den Geburtskanal, dem ersten Atemzug, den ersten Stunden. Manche dieser Geschichten hinterlassen Spuren: Verspannungen, Unruhe, Schlafprobleme, Trinkschwierigkeiten.
             </p>
-            <p style={{ fontSize: ".93rem", lineHeight: 1.95, color: "#4E5845", marginBottom: "2rem" }}>
+            <p style={{ fontSize: ".93rem", lineHeight: 1.95, color: "#5A4858", marginBottom: "2rem" }}>
               <strong style={{ color: C.clay }}>Gsundheitswerkstatt</strong> steht für das Wissen, dass ein Kind, das sich in seinem Körper wohlfühlt, tiefer Wurzeln schlägt — sicherer bondet, besser schläft, freier wächst.
             </p>
             <Btn onClick={() => nav("uebermich")}>Mehr über mich</Btn>
@@ -369,7 +369,7 @@ function HomePage({ nav }) {
 
       {/* 03 SYMPTOM NAVIGATOR */}
       <section className="wk-section" style={{ background: C.moss, position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", top: "-10%", right: "-5%", width: "480px", height: "480px", borderRadius: "50%", border: `1px solid rgba(176,168,184,.12)`, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: "-10%", right: "-5%", width: "480px", height: "480px", borderRadius: "50%", border: `1px solid rgba(200,168,192,.12)`, pointerEvents: "none" }} />
         <div style={{ maxWidth: "880px", margin: "0 auto", textAlign: "center", position: "relative", zIndex: 1 }}>
           <Reveal>
             <Label n="03" text="Wann kommen Familien zu mir" light />
@@ -405,7 +405,7 @@ function HomePage({ nav }) {
           <Reveal>
             <Label n="04" text="Kontakt" />
             <H2 size="clamp(2.5rem,4vw,4rem)">Bereit für den<br/><em style={{ color: C.clay, fontStyle: "italic" }}>ersten Schritt?</em></H2>
-            <p style={{ fontSize: ".95rem", color: "#4E5845", lineHeight: 1.85, maxWidth: "420px", marginBottom: "2.5rem" }}>
+            <p style={{ fontSize: ".95rem", color: "#5A4858", lineHeight: 1.85, maxWidth: "420px", marginBottom: "2.5rem" }}>
               Ich beantworte gerne deine Fragen — telefonisch oder per WhatsApp. Kein Formular, kein langer Weg. Nur ein echtes Gespräch von Mutter zu Mutter oder Fachfrau zu Fachfrau.
             </p>
             <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
@@ -432,7 +432,7 @@ function HomePage({ nav }) {
                   }}>
                     {item.main}
                   </div>
-                  <div style={{ fontSize: ".8rem", color: "#4E5845" }}>{item.sub}</div>
+                  <div style={{ fontSize: ".8rem", color: "#5A4858" }}>{item.sub}</div>
                 </div>
               ))}
             </div>
@@ -458,7 +458,7 @@ function CranioPage({ nav }) {
       <section style={{ background: C.moss, paddingTop: "70px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: "42%", zIndex: 0 }}>
           <ImageSlot label="Cranio Hero" desc="Sanfte Berührung am Kopf eines Neugeborenen. Warmes Licht von rechts. Hände liegen, drücken nicht. Stimmung: Stille, Geborgenheit." fill />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right,#4E5845 0%,rgba(78,88,69,.2) 100%)", pointerEvents: "none" }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right,#5A4858 0%,rgba(90,72,88,.2) 100%)", pointerEvents: "none" }} />
         </div>
         <div style={{ maxWidth: "620px", position: "relative", zIndex: 2, padding: "clamp(5rem,9vw,9rem) clamp(1.4rem,5vw,5rem) 5rem" }}>
           <Tag>Spezialisiert auf Neugeborene & Säuglinge</Tag>
@@ -476,11 +476,11 @@ function CranioPage({ nav }) {
         <Reveal>
           <Label n="01" text="Du machst nichts falsch." />
           <H2>Die ersten Wochen — magisch und erschöpfend zugleich.</H2>
-          <p style={{ fontSize: ".92rem", lineHeight: 1.9, color: "#4E5845", marginBottom: "1.2rem" }}>Wenn das Baby viel weint, schlecht schläft, beim Trinken unruhig ist oder sich stark überstreckt, wächst die Sorge schnell: "Mache ich etwas falsch? Hat mein Kind Schmerzen?"</p>
-          <p style={{ fontSize: ".92rem", lineHeight: 1.9, color: "#4E5845", marginBottom: "1.2rem" }}>Du machst nichts falsch. Manchmal hinterlässt der Weg ins Leben — eine rasante Geburt, ein Kaiserschnitt, der Einsatz einer Saugglocke — Spannungen im winzigen Körper.</p>
+          <p style={{ fontSize: ".92rem", lineHeight: 1.9, color: "#5A4858", marginBottom: "1.2rem" }}>Wenn das Baby viel weint, schlecht schläft, beim Trinken unruhig ist oder sich stark überstreckt, wächst die Sorge schnell: "Mache ich etwas falsch? Hat mein Kind Schmerzen?"</p>
+          <p style={{ fontSize: ".92rem", lineHeight: 1.9, color: "#5A4858", marginBottom: "1.2rem" }}>Du machst nichts falsch. Manchmal hinterlässt der Weg ins Leben — eine rasante Geburt, ein Kaiserschnitt, der Einsatz einer Saugglocke — Spannungen im winzigen Körper.</p>
           <div style={{ padding: "1.5rem 2rem", background: C.cream, borderLeft: `3px solid ${C.clay}`, marginTop: "1rem" }}>
             <h4 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.2rem", color: C.moss, marginBottom: ".5rem" }}>Sicherer Hafen für Mütter</h4>
-            <p style={{ fontSize: ".82rem", color: "#4E5845", lineHeight: 1.75, margin: 0 }}>In meiner Praxis herrscht kein Zeitdruck. Wenn gestillt, gewickelt oder gekuschelt werden muss, machen wir Pause.</p>
+            <p style={{ fontSize: ".82rem", color: "#5A4858", lineHeight: 1.75, margin: 0 }}>In meiner Praxis herrscht kein Zeitdruck. Wenn gestillt, gewickelt oder gekuschelt werden muss, machen wir Pause.</p>
           </div>
         </Reveal>
         <Reveal delay={0.2}>
@@ -498,7 +498,7 @@ function CranioPage({ nav }) {
       
       <section className="wk-section-s" style={{ background: C.cream }}><div className="wk-inner">
         <Reveal><Label n="02" text="Wann kommen Familien zu mir" /><H2>Was Eltern häufig berichten.</H2>
-          <p style={{ fontSize: ".88rem", color: "#4E5845", lineHeight: 1.85, maxWidth: "620px", marginBottom: "2rem" }}>Die craniosacrale Therapie ist eine ergänzende Methode — kein Ersatz für ärztliche Diagnosen.</p>
+          <p style={{ fontSize: ".88rem", color: "#5A4858", lineHeight: 1.85, maxWidth: "620px", marginBottom: "2rem" }}>Die craniosacrale Therapie ist eine ergänzende Methode — kein Ersatz für ärztliche Diagnosen.</p>
         </Reveal>
         
         {/* Responsive single grid */}
@@ -513,7 +513,7 @@ function CranioPage({ nav }) {
                 <div style={{ fontSize: ".6rem", letterSpacing: ".25em", textTransform: "uppercase", color: C.clay, marginBottom: "1.3rem" }}>{g.g}</div>
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {g.items.map(it => (
-                    <li key={it} style={{ fontSize: ".84rem", color: "#4E5845", padding: ".4rem 0", borderBottom: `1px solid ${C.stone}`, lineHeight: 1.5 }}>
+                    <li key={it} style={{ fontSize: ".84rem", color: "#5A4858", padding: ".4rem 0", borderBottom: `1px solid ${C.stone}`, lineHeight: 1.5 }}>
                       <span style={{ color: C.clay, marginRight: ".5rem" }}>◉</span>{it}
                     </li>
                   ))}
@@ -538,9 +538,9 @@ function CranioPage({ nav }) {
       <section className="wk-section-s" style={{ background: C.moss }}><div style={{ maxWidth: "680px", margin: "0 auto" }}>
         <Reveal>
           <Label n="04" text="Preise" light /><H2 light>Transparente Honorare</H2>
-          <div style={{ border: `1px solid rgba(221,216,208,.2)`, marginTop: "2rem" }}>
+          <div style={{ border: `1px solid rgba(238,221,208,.2)`, marginTop: "2rem" }}>
             {[["Erstbehandlung Säugling (60 min)", "€ 75,–"], ["Folgebehandlung (45 min)", "€ 60,–"], ["Erstbehandlung Kleinkind / Erwachsener", "€ 80,–"], ["CST + Tuina kombiniert", "€ 85,–"]].map(([l, p], i) => (
-              <div key={i} style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", alignItems: "center", padding: "1.1rem 1.8rem", borderBottom: "1px solid rgba(221,216,208,.15)", background: i % 2 === 0 ? "rgba(255,255,255,.03)" : "transparent" }}>
+              <div key={i} style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", alignItems: "center", padding: "1.1rem 1.8rem", borderBottom: "1px solid rgba(238,221,208,.15)", background: i % 2 === 0 ? "rgba(255,255,255,.03)" : "transparent" }}>
                 <span style={{ fontSize: ".87rem", color: C.stone }}>{l}</span>
                 <span style={{ fontFamily: "'DM Mono',monospace", fontSize: ".84rem", color: C.clay }}>{p}</span>
               </div>
@@ -575,7 +575,7 @@ function TCMPage() {
         <Reveal>
           <Label n="01" text="Fokus: Mutter" />
           <H2>Wiederaufbau nach der Geburt</H2>
-          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#4E5845", marginBottom: "1.2rem" }}>Mit einfachen, alltagstauglichen Rezepten — wärmende Kraftsuppen, spezielle Porridges — füllen wir deine Speicher auf, unterstützen den Milchfluss und helfen dem Körper, das Erschöpfungs-Plateau nach der Geburt zu überwinden.</p>
+          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#5A4858", marginBottom: "1.2rem" }}>Mit einfachen, alltagstauglichen Rezepten — wärmende Kraftsuppen, spezielle Porridges — füllen wir deine Speicher auf, unterstützen den Milchfluss und helfen dem Körper, das Erschöpfungs-Plateau nach der Geburt zu überwinden.</p>
           <Note><strong>Wann sinnvoll?</strong> Bei dauerhafter Erschöpfung trotz Schlaf, schwachem Milchfluss, oder wenn Sie das Wochenbett aktiv zur Erholung nutzen möchten.</Note>
         </Reveal>
         <Reveal delay={0.2}>
@@ -589,7 +589,7 @@ function TCMPage() {
           ].map((s, i) => (
             <div key={i} style={{ padding: "1rem 0", borderBottom: `1px solid ${C.stone}` }}>
               <div style={{ fontSize: ".68rem", letterSpacing: ".15em", textTransform: "uppercase", color: C.clay, marginBottom: ".25rem" }}>{s.t}</div>
-              <p style={{ fontSize: ".82rem", color: "#4E5845", margin: 0, lineHeight: 1.75 }}>{s.d}</p>
+              <p style={{ fontSize: ".82rem", color: "#5A4858", margin: 0, lineHeight: 1.75 }}>{s.d}</p>
             </div>
           ))}
         </Reveal>
@@ -617,7 +617,7 @@ function TuinaPage() {
         <Reveal>
           <Label n="01" text="Kinder-Tuina" />
           <H2>Wenn Berühren unterstützt</H2>
-          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#4E5845", marginBottom: "1.2rem" }}>Als ausgebildete Kursleitung gebe ich Eltern konkrete Griffe mit, die sie täglich zu Hause anwenden können — ein echtes Werkzeug für den Alltag, das die Bindung stärkt.</p>
+          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#5A4858", marginBottom: "1.2rem" }}>Als ausgebildete Kursleitung gebe ich Eltern konkrete Griffe mit, die sie täglich zu Hause anwenden können — ein echtes Werkzeug für den Alltag, das die Bindung stärkt.</p>
           <div style={{ marginBottom: ".8rem", fontSize: ".6rem", letterSpacing: ".25em", textTransform: "uppercase", color: C.clay }}>Häufige Anwendungen</div>
           <div style={{ marginBottom: "1.5rem" }}>
             {["Koliken & Bauchschmerzen", "Verstopfung", "Häufige Erkältungen", "Schlafstörungen", "Zahnen", "Immununterstützung", "Atemwegsinfekte begleiten"].map(s => (
@@ -633,9 +633,9 @@ function TuinaPage() {
         <Reveal delay={0.2}>
           <Label n="02" text="Therapeutisches Schröpfen" />
           <H2>Tiefe Entlastung für Mütter</H2>
-          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#4E5845", marginBottom: "1.5rem" }}>Besonders für Mütter, deren Schulter-Nacken-Bereich durch Tragen und Stillen verspannt ist, bietet das sanfte Trocken-Schröpfen spürbare Erleichterung.</p>
+          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#5A4858", marginBottom: "1.5rem" }}>Besonders für Mütter, deren Schulter-Nacken-Bereich durch Tragen und Stillen verspannt ist, bietet das sanfte Trocken-Schröpfen spürbare Erleichterung.</p>
           {["Löst tiefe Muskelverspannungen und Faszienverklebungen.", "Fördert die lokale Durchblutung.", "Ergänzt die Tuina-Behandlung wirkungsvoll."].map((s, i) => (
-            <div key={i} style={{ display: "flex", gap: "1rem", padding: ".75rem 0", borderBottom: `1px solid ${C.stone}`, fontSize: ".82rem", color: "#4E5845", lineHeight: 1.7 }}>
+            <div key={i} style={{ display: "flex", gap: "1rem", padding: ".75rem 0", borderBottom: `1px solid ${C.stone}`, fontSize: ".82rem", color: "#5A4858", lineHeight: 1.7 }}>
               <span style={{ color: C.clay, flexShrink: 0 }}>+</span>{s}
             </div>
           ))}
@@ -663,12 +663,12 @@ function SchmerzPage() {
         <Reveal>
           <Label n="01" text="Was ist der G-Well Pointer" />
           <H2>Akupunkturpunkte — ohne Einstich</H2>
-          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#4E5845", marginBottom: "1.5rem" }}>Der G-Well Pointer lokalisiert Akupunkturpunkte und Triggerpunkte durch Messung des Hautwiderstands und stimuliert sie mit sanften mikroelektrischen Impulsen — vollständig schmerzfrei.</p>
+          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#5A4858", marginBottom: "1.5rem" }}>Der G-Well Pointer lokalisiert Akupunkturpunkte und Triggerpunkte durch Messung des Hautwiderstands und stimuliert sie mit sanften mikroelektrischen Impulsen — vollständig schmerzfrei.</p>
           {[{ n: "01", t: "Absolut schmerzfrei", d: "Ideal für alle, die Angst vor Nadeln haben." }, { n: "02", t: "Narbenentstörung nach Kaiserschnitt", d: "Besonders wirksam bei Narbengewebe — relevant für Mütter nach Kaiserschnitt." }, { n: "03", t: "Direkte Entspannung", d: "Wirkung bei stark verspanntem Nacken- und Schulterbereich." }].map(s => (
             <div key={s.n} style={{ padding: "1.1rem 1.4rem", background: C.cream, borderLeft: `3px solid ${C.clay}`, marginBottom: ".8rem" }}>
               <div style={{ fontSize: ".58rem", letterSpacing: ".2em", textTransform: "uppercase", color: C.clay, marginBottom: ".2rem" }}>Vorteil {s.n}</div>
               <div style={{ fontSize: ".83rem", fontWeight: 500, color: C.moss, marginBottom: ".2rem" }}>{s.t}</div>
-              <p style={{ fontSize: ".78rem", color: "#4E5845", margin: 0, lineHeight: 1.7 }}>{s.d}</p>
+              <p style={{ fontSize: ".78rem", color: "#5A4858", margin: 0, lineHeight: 1.7 }}>{s.d}</p>
             </div>
           ))}
         </Reveal>
@@ -710,10 +710,10 @@ function AromaPage() {
         <Reveal>
           <Label n="01" text="Was ist Aromatherapie" />
           <H2>Mehr als nur Duft</H2>
-          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#4E5845", marginBottom: "1rem" }}>
+          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#5A4858", marginBottom: "1rem" }}>
             Therapeutische Aromatherapie unterscheidet sich grundlegend von Raumbeduftung oder Wellness-Düften. Es werden hochwertige, reine ätherische Öle in therapeutischen Konzentrationen eingesetzt – verdünnt in Trägerölen, als Inhalation, in Massagen oder als Kompressen.
           </p>
-          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#4E5845", marginBottom: "1rem" }}>
+          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#5A4858", marginBottom: "1rem" }}>
             Für Babys und Kleinkinder ist besondere Vorsicht bei Auswahl und Verdünnung geboten. Marion Sailer-Riegler verfügt über eine fundierte Ausbildung in therapeutischer Aromatherapie und kennt die spezifischen Sicherheitsgrenzen für jede Altersgruppe.
           </p>
           <Note><strong>Nicht alle Öle sind für Babys geeignet.</strong> Eukalyptus, Pfefferminze und viele andere verbreitete Öle sind für Kinder unter 3 Jahren kontraindiziert. Bitte nie ohne Fachberatung anwenden.</Note>
@@ -730,7 +730,7 @@ function AromaPage() {
           ].map((s, i) => (
             <div key={i} style={{ padding: ".9rem 0", borderBottom: i === 4 ? "none" : `1px solid ${C.stone}` }}>
               <div style={{ fontSize: ".68rem", letterSpacing: ".15em", textTransform: "uppercase", color: C.clay, marginBottom: ".2rem" }}>{s.t}</div>
-              <p style={{ fontSize: ".82rem", color: "#4E5845", margin: 0, lineHeight: 1.75 }}>{s.d}</p>
+              <p style={{ fontSize: ".82rem", color: "#5A4858", margin: 0, lineHeight: 1.75 }}>{s.d}</p>
             </div>
           ))}
         </Reveal>
@@ -782,16 +782,16 @@ function UeberMichPage() {
         </div>
         <div style={{ position: "relative", minHeight: "420px" }}>
           <ImageSlot label="Portrait Marion Sailer-Riegler" desc="Natürliches Portrait. Kein weißer Kittel. Direkter Blickkontakt. Warmes Seitenlicht. Authentisch." fill />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right,rgba(78,88,69,.35) 0%,transparent 40%)", pointerEvents: "none" }} />
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right,rgba(90,72,88,.35) 0%,transparent 40%)", pointerEvents: "none" }} />
         </div>
       </section>
       <section className="wk-section"><div className="wk-inner wk-2col">
         <Reveal>
           <Label n="01" text="Mein Weg" />
           <H2>27 Jahre an der Seite von Kindern und Familien.</H2>
-          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#4E5845", marginBottom: "1.1rem" }}>Mein Weg zur craniosakralen Therapie begann mit der Faszination für die Weisheit des menschlichen Körpers. Jeder Mensch — vom ersten Atemzug an — trägt die Fähigkeit zur Selbstregulation in sich.</p>
-          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#4E5845", marginBottom: "1.1rem" }}>Als ehemalige Leiterin der Kinderstation des Krankenhauses Eisenstadt habe ich Tausende von Kindern begleitet und Familien in den schwierigsten Momenten ihres Lebens gestützt.</p>
-          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#4E5845" }}>In meiner Praxis in Mattersburg biete ich einen geschützten Raum — einen Raum, in dem Erschöpfung sein darf, Tränen fließen dürfen und wir gemeinsam die Wurzeln für ein gesundes Wachstum stärken.</p>
+          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#5A4858", marginBottom: "1.1rem" }}>Mein Weg zur craniosakralen Therapie begann mit der Faszination für die Weisheit des menschlichen Körpers. Jeder Mensch — vom ersten Atemzug an — trägt die Fähigkeit zur Selbstregulation in sich.</p>
+          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#5A4858", marginBottom: "1.1rem" }}>Als ehemalige Leiterin der Kinderstation des Krankenhauses Eisenstadt habe ich Tausende von Kindern begleitet und Familien in den schwierigsten Momenten ihres Lebens gestützt.</p>
+          <p style={{ fontSize: ".9rem", lineHeight: 1.9, color: "#5A4858" }}>In meiner Praxis in Mattersburg biete ich einen geschützten Raum — einen Raum, in dem Erschöpfung sein darf, Tränen fließen dürfen und wir gemeinsam die Wurzeln für ein gesundes Wachstum stärken.</p>
         </Reveal>
         <Reveal delay={0.2}>
           <Label n="02" text="Ausbildung & Qualifikationen" />
@@ -801,7 +801,7 @@ function UeberMichPage() {
               <span style={{ color: C.clay, flexShrink: 0, paddingTop: ".1rem" }}>◉</span>
               <div>
                 <div style={{ fontSize: ".76rem", fontWeight: 500, color: C.moss, marginBottom: ".12rem" }}>{q.t}</div>
-                <div style={{ fontSize: ".74rem", color: "#4E5845", lineHeight: 1.6 }}>{q.s}</div>
+                <div style={{ fontSize: ".74rem", color: "#5A4858", lineHeight: 1.6 }}>{q.s}</div>
               </div>
             </div>
           ))}
@@ -855,7 +855,7 @@ function Navbar({ current, nav }) {
     { id: "schmerz", short: "G-Well" }, { id: "aroma", short: "Aroma" }, { id: "uebermich", short: "Über mich" },
   ];
   return (
-    <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: scrolled || open ? "rgba(250,249,246,.97)" : "rgba(250,249,246,.88)", backdropFilter: "blur(14px)", borderBottom: `1px solid rgba(122,110,138,${scrolled ? .2 : .08})`, transition: "all .3s" }}>
+    <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, background: scrolled || open ? "rgba(253,250,246,.97)" : "rgba(253,250,246,.88)", backdropFilter: "blur(14px)", borderBottom: `1px solid rgba(154,136,168,${scrolled ? .2 : .08})`, transition: "all .3s" }}>
       <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 clamp(1.2rem,3vw,2.5rem)", height: "70px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <button onClick={() => go("home")} style={{ background: "none", border: "none", fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(.85rem,2vw,1rem)", letterSpacing: ".15em", textTransform: "uppercase", color: C.clay, fontWeight: 500 }}>GSUNDHEITSWERKSTATT</button>
         <div className="wk-nav-desk">
@@ -893,13 +893,13 @@ function Footer({ nav }) {
       <div className="wk-footer-g" style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <div>
           <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.9rem", color: C.cream, marginBottom: "1rem", letterSpacing: ".1em" }}>GSUNDHEITS<span style={{ color: C.clay }}>WERKSTATT</span></div>
-          <p style={{ fontSize: ".8rem", lineHeight: 1.85, color: "rgba(221,216,208,.7)", maxWidth: "300px" }}>Spezialisierte Craniosacral Therapie für Säuglinge und Kleinkinder. TCM · Tuina · G-Well · Aromatherapie. Mattersburg, Burgenland.</p>
+          <p style={{ fontSize: ".8rem", lineHeight: 1.85, color: "rgba(238,221,208,.7)", maxWidth: "300px" }}>Spezialisierte Craniosacral Therapie für Säuglinge und Kleinkinder. TCM · Tuina · G-Well · Aromatherapie. Mattersburg, Burgenland.</p>
         </div>
         <div>
           <div style={{ fontSize: ".57rem", letterSpacing: ".28em", textTransform: "uppercase", color: C.clay, marginBottom: "1.3rem" }}>Leistungen</div>
           {[["cranio", "Craniosakrale Energetik"], ["tcm", "TCM Ernährung"], ["tuina", "Tuina & Massagetechniken"], ["schmerz", "G-Well Pointer"], ["aroma", "Aromatherapie"], ["uebermich", "Über mich"]].map(([id, l]) => (
-            <button key={id} onClick={() => nav(id)} style={{ display: "block", background: "none", border: "none", fontSize: ".78rem", color: "rgba(221,216,208,.65)", padding: ".3rem 0", fontFamily: "'DM Sans',sans-serif", textAlign: "left", transition: "color .2s" }}
-              onMouseEnter={e => e.target.style.color = C.clay} onMouseLeave={e => e.target.style.color = "rgba(221,216,208,.65)"}>{l}</button>
+            <button key={id} onClick={() => nav(id)} style={{ display: "block", background: "none", border: "none", fontSize: ".78rem", color: "rgba(238,221,208,.65)", padding: ".3rem 0", fontFamily: "'DM Sans',sans-serif", textAlign: "left", transition: "color .2s" }}
+              onMouseEnter={e => e.target.style.color = C.clay} onMouseLeave={e => e.target.style.color = "rgba(238,221,208,.65)"}>{l}</button>
           ))}
         </div>
         <div>
@@ -911,8 +911,8 @@ function Footer({ nav }) {
           </div>
           <div style={{ display: "flex", gap: ".6rem", flexWrap: "wrap" }}>
             {[["Anrufen", "tel:+436503631969"], ["WhatsApp", "https://wa.me/436503631969"]].map(([l, h]) => (
-              <button key={l} onClick={() => window.open(h)} style={{ background: "transparent", border: `1px solid rgba(176,168,184,.3)`, color: C.dust, padding: ".55rem 1.1rem", fontSize: ".58rem", letterSpacing: ".2em", textTransform: "uppercase", fontFamily: "'DM Sans',sans-serif", transition: "border-color .2s" }}
-                onMouseEnter={e => e.currentTarget.style.borderColor = C.dust} onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(176,168,184,.3)"}>{l}</button>
+              <button key={l} onClick={() => window.open(h)} style={{ background: "transparent", border: `1px solid rgba(200,168,192,.3)`, color: C.dust, padding: ".55rem 1.1rem", fontSize: ".58rem", letterSpacing: ".2em", textTransform: "uppercase", fontFamily: "'DM Sans',sans-serif", transition: "border-color .2s" }}
+                onMouseEnter={e => e.currentTarget.style.borderColor = C.dust} onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(200,168,192,.3)"}>{l}</button>
             ))}
           </div>
         </div>
